@@ -186,6 +186,60 @@
     .s-divider::before,.s-divider::after{content:'';width:60px;height:1px;background:var(--cream3)}
     .s-divider-dot{width:6px;height:6px;background:var(--gold);border-radius:50%}
 
+    /* ── ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ── */
+
+    /* боковые линии на всех секциях */
+    section::after{
+      content:'';position:absolute;
+      top:5%;bottom:5%;left:24px;
+      width:1px;
+      background:linear-gradient(to bottom,transparent,rgba(45,90,61,.15) 20%,rgba(45,90,61,.15) 80%,transparent);
+      pointer-events:none;z-index:0;
+    }
+    section::before{
+      content:'';position:absolute;
+      top:5%;bottom:5%;right:24px;
+      width:1px;
+      background:linear-gradient(to bottom,transparent,rgba(201,148,58,.15) 20%,rgba(201,148,58,.15) 80%,transparent);
+      pointer-events:none;z-index:0;
+    }
+
+    /* угловые декоры на каждой секции */
+    .sec-corner{position:absolute;pointer-events:none;z-index:0}
+    .sec-corner.tl{top:20px;left:40px;width:40px;height:40px;border-top:1.5px solid rgba(45,90,61,.2);border-left:1.5px solid rgba(45,90,61,.2)}
+    .sec-corner.tr{top:20px;right:40px;width:40px;height:40px;border-top:1.5px solid rgba(201,148,58,.2);border-right:1.5px solid rgba(201,148,58,.2)}
+    .sec-corner.bl{bottom:20px;left:40px;width:40px;height:40px;border-bottom:1.5px solid rgba(45,90,61,.2);border-left:1.5px solid rgba(45,90,61,.2)}
+    .sec-corner.br{bottom:20px;right:40px;width:40px;height:40px;border-bottom:1.5px solid rgba(201,148,58,.2);border-right:1.5px solid rgba(201,148,58,.2)}
+
+    /* ромбики на боковых линиях */
+    .sec-diamond{
+      position:absolute;width:7px;height:7px;
+      transform:rotate(45deg);pointer-events:none;z-index:0;
+    }
+    .sec-diamond.left{left:21px;background:rgba(45,90,61,.25)}
+    .sec-diamond.right{right:21px;background:rgba(201,148,58,.25)}
+
+    /* горизонтальный разделитель между секциями */
+    .sec-divider{
+      position:absolute;left:8%;right:8%;height:1px;
+      background:linear-gradient(to right,transparent,rgba(45,90,61,.12) 30%,rgba(201,148,58,.15) 50%,rgba(45,90,61,.12) 70%,transparent);
+      pointer-events:none;z-index:0;
+    }
+    .sec-divider.top{top:0}
+    .sec-divider.bottom{bottom:0}
+
+    /* фоновая сетка */
+    .sec-grid{
+      position:absolute;inset:0;pointer-events:none;z-index:0;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(45,90,61,.025) 60px,rgba(45,90,61,.025) 61px),
+        repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(45,90,61,.025) 60px,rgba(45,90,61,.025) 61px);
+    }
+
+    @media(max-width:768px){
+      .sec-corner,.sec-diamond{display:none}
+    }
+
     /* анимации */
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
@@ -469,6 +523,16 @@
 
 <!-- ═══ МЕНЮ ═══ -->
 <section class="menu-section" id="menu">
+  <div class="sec-divider top"></div>
+  <div class="sec-grid"></div>
+  <div class="sec-corner tl"></div><div class="sec-corner tr"></div>
+  <div class="sec-corner bl"></div><div class="sec-corner br"></div>
+  <div class="sec-diamond left" style="top:50%"></div>
+  <div class="sec-diamond right" style="top:50%"></div>
+  <div class="sec-diamond left" style="top:25%"></div>
+  <div class="sec-diamond right" style="top:25%"></div>
+  <div class="sec-diamond left" style="top:75%"></div>
+  <div class="sec-diamond right" style="top:75%"></div>
   <div class="section-inner">
     <div class="menu-intro">
       <div class="reveal-left">
@@ -506,6 +570,14 @@
 
 <!-- ═══ ГАЛЕРЕЯ ═══ -->
 <section class="gallery-section" id="gallery">
+  <div class="sec-divider top"></div>
+  <div class="sec-grid"></div>
+  <div class="sec-corner tl"></div><div class="sec-corner tr"></div>
+  <div class="sec-corner bl"></div><div class="sec-corner br"></div>
+  <div class="sec-diamond left" style="top:50%"></div>
+  <div class="sec-diamond right" style="top:50%"></div>
+  <div class="sec-diamond left" style="top:30%"></div>
+  <div class="sec-diamond right" style="top:70%"></div>
   <div class="section-inner">
     <div class="s-label" style="justify-content:center" class="reveal">Наши работы</div>
     <h2 class="s-title s-title-center reveal">Галерея <span>вкусного искусства</span></h2>
@@ -590,6 +662,14 @@
 
 <!-- ═══ МАСТЕР-КЛАССЫ ═══ -->
 <section class="master-section" id="master">
+  <div class="sec-divider top"></div>
+  <div class="sec-grid"></div>
+  <div class="sec-corner tl"></div><div class="sec-corner tr"></div>
+  <div class="sec-corner bl"></div><div class="sec-corner br"></div>
+  <div class="sec-diamond left" style="top:50%"></div>
+  <div class="sec-diamond right" style="top:50%"></div>
+  <div class="sec-diamond left" style="top:25%"></div>
+  <div class="sec-diamond right" style="top:75%"></div>
   <div class="section-inner">
     <div class="master-layout">
       <div class="reveal-left">
