@@ -26,30 +26,63 @@
     /* ── NAV ── */
     nav{
       position:fixed;top:0;left:0;right:0;z-index:100;
-      background:rgba(250,247,242,.96);backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(201,148,58,.15);
-      height:72px;padding:0 40px;
+      background:rgba(250,247,242,.97);backdrop-filter:blur(20px);
+      border-bottom:2px solid rgba(201,148,58,.25);
+      height:80px;padding:0 60px;
       display:flex;align-items:center;justify-content:space-between;
+      box-shadow:0 4px 30px rgba(0,0,0,.06);
     }
+
+    /* декоративная полоска сверху навбара */
+    nav::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(to right,var(--green),var(--gold),var(--green));
+    }
+
     .nav-logo{
-      font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;font-style:italic;
-      color:var(--green);letter-spacing:.04em;text-decoration:none;
-      text-shadow:0 1px 8px rgba(45,90,61,.15);
+      font-family:'Playfair Display',serif;
+      font-size:1.75rem;font-weight:900;font-style:italic;
+      color:var(--green);letter-spacing:.02em;text-decoration:none;
+      display:flex;align-items:center;gap:4px;
+      text-shadow:0 2px 12px rgba(45,90,61,.12);
     }
-    .nav-logo span{
-      color:var(--gold);
-      font-size:1.55rem;
+    .nav-logo span{color:var(--gold)}
+
+    /* разделитель между логотипом и ссылками */
+    .nav-sep{
+      width:1px;height:32px;
+      background:linear-gradient(to bottom,transparent,rgba(45,90,61,.2),transparent);
+      margin:0 32px;
     }
-    .nav-links{display:flex;gap:28px;list-style:none}
-    .nav-links a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s;font-weight:600}
+
+    .nav-center{display:flex;align-items:center}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{
+      font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--text2);text-decoration:none;transition:color .2s;font-weight:600;
+      position:relative;padding-bottom:4px;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;
+      background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .25s;
+    }
     .nav-links a:hover{color:var(--green)}
-    .nav-cta{
-      padding:9px 22px;background:var(--green);color:white;
-      font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-      text-decoration:none;border-radius:3px;transition:all .25s;
+    .nav-links a:hover::after{transform:scaleX(1)}
+
+    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-phone{
+      font-size:.82rem;font-weight:600;color:var(--text2);
+      text-decoration:none;letter-spacing:.04em;transition:color .2s;
     }
-    .nav-cta:hover{background:var(--green2);transform:translateY(-1px)}
-    @media(max-width:768px){.nav-links{display:none}}
+    .nav-phone:hover{color:var(--green)}
+    .nav-cta{
+      padding:11px 26px;background:var(--green);color:white;
+      font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      text-decoration:none;border-radius:4px;transition:all .3s;
+      box-shadow:0 4px 16px rgba(45,90,61,.25);
+    }
+    .nav-cta:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,90,61,.3)}
+    @media(max-width:768px){.nav-links,.nav-sep,.nav-phone{display:none}.nav-cta{padding:9px 18px}}
 
     /* ── HERO ── */
     .hero{
@@ -480,13 +513,19 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Кулинарный <span>Арт</span></a>
-  <ul class="nav-links">
-    <li><a href="#menu">Меню</a></li>
-    <li><a href="#gallery">Галерея</a></li>
-    <li><a href="#master">Мастер-классы</a></li>
-    <li><a href="#contact">Контакты</a></li>
-  </ul>
-  <a class="nav-cta" href="#contact">Заказать</a>
+  <div class="nav-sep"></div>
+  <div class="nav-center">
+    <ul class="nav-links">
+      <li><a href="#menu">Меню</a></li>
+      <li><a href="#gallery">Галерея</a></li>
+      <li><a href="#master">Мастер-классы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <a class="nav-phone" href="tel:+79925110611">+7 992 511 06 11</a>
+    <a class="nav-cta" href="#contact">Заказать</a>
+  </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
