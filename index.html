@@ -28,14 +28,18 @@
       position:fixed;top:0;left:0;right:0;z-index:100;
       background:rgba(250,247,242,.96);backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(201,148,58,.15);
-      height:64px;padding:0 32px;
+      height:72px;padding:0 40px;
       display:flex;align-items:center;justify-content:space-between;
     }
     .nav-logo{
-      font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;font-style:italic;
-      color:var(--green);letter-spacing:.06em;text-decoration:none;
+      font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;font-style:italic;
+      color:var(--green);letter-spacing:.04em;text-decoration:none;
+      text-shadow:0 1px 8px rgba(45,90,61,.15);
     }
-    .nav-logo span{color:var(--gold)}
+    .nav-logo span{
+      color:var(--gold);
+      font-size:1.55rem;
+    }
     .nav-links{display:flex;gap:28px;list-style:none}
     .nav-links a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s;font-weight:600}
     .nav-links a:hover{color:var(--green)}
