@@ -82,7 +82,12 @@
       box-shadow:0 4px 16px rgba(45,90,61,.25);
     }
     .nav-cta:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,90,61,.3)}
-    @media(max-width:768px){.nav-links,.nav-sep,.nav-phone{display:none}.nav-cta{padding:9px 18px}}
+    @media(max-width:768px){
+      nav{padding:0 16px;height:64px}
+      .nav-links,.nav-sep,.nav-phone{display:none}
+      .nav-logo{font-size:1.25rem}
+      .nav-cta{padding:8px 14px;font-size:.68rem;letter-spacing:.06em}
+    }
 
     /* ── HERO ── */
     .hero{
