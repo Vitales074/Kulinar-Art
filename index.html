@@ -244,7 +244,22 @@
       background:linear-gradient(135deg,var(--cream) 0%,var(--cream2) 100%);
       position:relative;
     }
-    @media(max-width:900px){.hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center}}
+    @media(max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+        padding:100px 24px 60px;
+        text-align:center;
+        justify-items:center;
+      }
+      .hero-left{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+      }
+      .hero-badge{margin-left:auto;margin-right:auto}
+      .hero-stats{justify-content:center;flex-wrap:wrap;gap:24px}
+      .hero-right{display:none}
+    }
 
     .hero::before{
       content:'';position:absolute;
