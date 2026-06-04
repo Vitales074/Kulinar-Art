@@ -21,7 +21,92 @@
       --text2:  #6b5a42;
     }
     html{scroll-behavior:smooth;font-size:112%}
-    body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;cursor:default}
+    body{font-family:'Raleway',sans-serif;background:#f3ece0;color:var(--text);overflow-x:hidden;cursor:default}
+
+    /* ═══ ПРЕЛОАДЕР ═══ */
+    .preloader{
+      position:fixed;inset:0;z-index:100000;
+      background:linear-gradient(135deg,#faf7f2 0%,#f0e6d6 100%);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+      transition:opacity .8s ease,visibility .8s;
+    }
+    .preloader.hide{opacity:0;visibility:hidden}
+    .preloader-logo svg{width:120px;height:auto}
+    .preloader-logo path,.preloader-logo line,.preloader-logo circle{
+      stroke-dasharray:600;stroke-dashoffset:600;animation:drawLine 1.8s ease forwards;
+    }
+    @keyframes drawLine{to{stroke-dashoffset:0}}
+    .preloader-text{
+      font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;font-weight:700;
+      color:var(--green);opacity:0;animation:fadeInUp .8s ease 1.1s forwards;
+    }
+    .preloader-text span{color:var(--gold)}
+    .preloader-bar{width:160px;height:2px;background:rgba(201,148,58,.2);border-radius:2px;overflow:hidden}
+    .preloader-bar span{display:block;height:100%;background:linear-gradient(to right,var(--green),var(--gold));width:0;animation:loadBar 1.9s ease forwards}
+    @keyframes loadBar{to{width:100%}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ═══ ЖИВОЙ СВЕТЛЫЙ MESH-ФОН ═══ */
+    .mesh-bg{
+      position:fixed;inset:0;z-index:-2;
+      background:
+        radial-gradient(ellipse 60% 55% at 12% 18%, rgba(201,148,58,.18) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 50% at 88% 22%, rgba(61,122,82,.16) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 60% at 80% 82%, rgba(232,184,109,.2) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 48% at 18% 85%, rgba(45,90,61,.12) 0%, transparent 50%),
+        linear-gradient(135deg, #faf7f2 0%, #f3ece0 50%, #f6efe3 100%);
+      background-size:200% 200%,200% 200%,200% 200%,200% 200%,100% 100%;
+      animation:meshMove 26s ease-in-out infinite;
+    }
+    @keyframes meshMove{
+      0%{background-position:0% 0%,100% 0%,100% 100%,0% 100%,0 0}
+      25%{background-position:50% 30%,50% 40%,60% 70%,30% 60%,0 0}
+      50%{background-position:100% 100%,0% 100%,0% 0%,100% 0%,0 0}
+      75%{background-position:50% 70%,50% 50%,40% 30%,70% 40%,0 0}
+      100%{background-position:0% 0%,100% 0%,100% 100%,0% 100%,0 0}
+    }
+
+    /* ═══ ГЛОБАЛЬНЫЕ ОРБЫ ═══ */
+    .global-orbs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+    .g-orb{position:absolute;border-radius:50%;filter:blur(75px);will-change:transform}
+    .g-orb.green{background:radial-gradient(circle,rgba(61,122,82,.3) 0%,transparent 70%)}
+    .g-orb.gold{background:radial-gradient(circle,rgba(232,184,109,.42) 0%,transparent 70%)}
+    .g-orb.peach{background:radial-gradient(circle,rgba(224,160,120,.32) 0%,transparent 70%)}
+    .g-orb.g1{width:500px;height:500px;top:5%;left:-8%;animation:gDrift1 22s ease-in-out infinite}
+    .g-orb.g2{width:450px;height:450px;top:30%;right:-10%;animation:gDrift2 26s ease-in-out infinite}
+    .g-orb.g3{width:400px;height:400px;bottom:8%;left:-6%;animation:gDrift3 20s ease-in-out infinite}
+    .g-orb.g4{width:360px;height:360px;bottom:20%;right:-7%;animation:gDrift1 28s ease-in-out infinite}
+    .g-orb.g5{width:320px;height:320px;top:55%;left:8%;animation:gDrift2 24s ease-in-out infinite}
+    @keyframes gDrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,60px) scale(1.18)}}
+    @keyframes gDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,50px) scale(1.12)}}
+    @keyframes gDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-50px) scale(1.2)}}
+
+    /* ═══ БОКОВЫЕ ВРАЩАЮЩИЕСЯ КОЛЬЦА ═══ */
+    .side-decor{position:fixed;top:50%;width:620px;height:620px;z-index:-1;pointer-events:none}
+    .side-decor.left{left:-280px;transform:translateY(-50%)}
+    .side-decor.right{right:-280px;transform:translateY(-50%)}
+    .side-decor svg{width:100%;height:100%}
+    .side-decor .ring-rot{transform-origin:center}
+    .side-decor.left .ring-rot{animation:ringSpin 45s linear infinite}
+    .side-decor.right .ring-rot{animation:ringSpin 55s linear infinite reverse}
+    @keyframes ringSpin{to{transform:rotate(360deg)}}
+    @media(max-width:900px){.side-decor{display:none}}
+
+    /* виньетка для глубины (светлая) */
+    .vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:radial-gradient(ellipse 85% 95% at 50% 50%, transparent 60%, rgba(140,110,70,.12) 100%);}
+
+    /* ═══ ВОЛНЫ-РАЗДЕЛИТЕЛИ ═══ */
+    .wave-divider{position:relative;width:100%;height:70px;margin:-35px 0;z-index:5;pointer-events:none;overflow:hidden}
+    .wave-divider svg{position:absolute;width:100%;height:100%;left:0;top:0}
+    .wave-line{fill:none;stroke:rgba(201,148,58,.4);stroke-width:2}
+    .wave-line.thin{stroke:rgba(61,122,82,.3);stroke-width:1.5}
+    .wave-anim{animation:waveFloat 8s ease-in-out infinite}
+    @keyframes waveFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(-40px)}}
+    .wave-diamond{position:absolute;top:50%;left:50%;width:12px;height:12px;
+      transform:translate(-50%,-50%) rotate(45deg);background:var(--gold);
+      box-shadow:0 0 20px rgba(201,148,58,.6);z-index:6;animation:diamondPulse 3s ease-in-out infinite}
+    @keyframes diamondPulse{0%,100%{box-shadow:0 0 18px rgba(201,148,58,.6);transform:translate(-50%,-50%) rotate(45deg) scale(1)}50%{box-shadow:0 0 28px rgba(201,148,58,.9);transform:translate(-50%,-50%) rotate(45deg) scale(1.2)}}
 
     /* ═══ ПРОГРЕСС-БАР ПРОКРУТКИ ═══ */
     .scroll-progress{
@@ -292,7 +377,14 @@
       font-weight:900;line-height:1.08;
       color:var(--dark);margin-bottom:10px;
     }
-    .hero-title span{color:var(--green);font-style:italic}
+    .hero-title span{
+      font-style:italic;
+      background:linear-gradient(110deg,#3d7a52 0%,#c9943a 35%,#e8b86d 50%,#3d7a52 70%,#c9943a 100%);
+      background-size:220% auto;
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      animation:shimmerText 5s linear infinite;
+    }
+    @keyframes shimmerText{to{background-position:220% center}}
     .hero-title-sub{
       font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
       font-size:clamp(1.3rem,3vw,2rem);color:var(--gold);
@@ -741,6 +833,67 @@
 </head>
 <body>
 
+<!-- ═══ ПРЕЛОАДЕР ═══ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-logo">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#3d7a52" stroke-width="2"/>
+      <!-- вилка -->
+      <line x1="45" y1="32" x2="45" y2="58" stroke="#c9943a" stroke-width="2.5"/>
+      <line x1="52" y1="32" x2="52" y2="58" stroke="#c9943a" stroke-width="2.5"/>
+      <line x1="59" y1="32" x2="59" y2="58" stroke="#c9943a" stroke-width="2.5"/>
+      <path d="M45 58 Q52 64 59 58" fill="none" stroke="#c9943a" stroke-width="2.5"/>
+      <line x1="52" y1="58" x2="52" y2="88" stroke="#c9943a" stroke-width="2.5"/>
+      <!-- ложка -->
+      <circle cx="76" cy="42" r="9" fill="none" stroke="#3d7a52" stroke-width="2.5"/>
+      <line x1="76" y1="51" x2="76" y2="88" stroke="#3d7a52" stroke-width="2.5"/>
+    </svg>
+  </div>
+  <div class="preloader-text">Кулинарный <span>Арт</span></div>
+  <div class="preloader-bar"><span></span></div>
+</div>
+
+<!-- ═══ ЖИВОЙ MESH-ФОН ═══ -->
+<div class="mesh-bg"></div>
+
+<!-- ═══ ГЛОБАЛЬНЫЕ ОРБЫ ═══ -->
+<div class="global-orbs">
+  <div class="g-orb gold g1"></div>
+  <div class="g-orb green g2"></div>
+  <div class="g-orb peach g3"></div>
+  <div class="g-orb gold g4"></div>
+  <div class="g-orb green g5"></div>
+</div>
+
+<!-- ═══ БОКОВЫЕ КОЛЬЦА ═══ -->
+<div class="side-decor left">
+  <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <g class="ring-rot">
+      <circle cx="300" cy="300" r="290" fill="none" stroke="rgba(201,148,58,.35)" stroke-width="1.5"/>
+      <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(201,148,58,.25)" stroke-width="1.5" stroke-dasharray="8 14"/>
+      <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(61,122,82,.4)" stroke-width="2"/>
+      <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(201,148,58,.2)" stroke-width="1" stroke-dasharray="3 10"/>
+      <circle cx="300" cy="10" r="6" fill="rgba(201,148,58,.7)"/>
+      <circle cx="300" cy="110" r="4" fill="rgba(61,122,82,.6)"/>
+    </g>
+  </svg>
+</div>
+<div class="side-decor right">
+  <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <g class="ring-rot">
+      <circle cx="300" cy="300" r="290" fill="none" stroke="rgba(201,148,58,.35)" stroke-width="1.5"/>
+      <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(201,148,58,.25)" stroke-width="1.5" stroke-dasharray="8 14"/>
+      <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(61,122,82,.4)" stroke-width="2"/>
+      <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(201,148,58,.2)" stroke-width="1" stroke-dasharray="3 10"/>
+      <circle cx="300" cy="590" r="6" fill="rgba(201,148,58,.7)"/>
+      <circle cx="300" cy="490" r="4" fill="rgba(61,122,82,.6)"/>
+    </g>
+  </svg>
+</div>
+
+<!-- виньетка -->
+<div class="vignette"></div>
+
 <!-- ═══ ПРОГРЕСС-БАР ═══ -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -825,6 +978,15 @@
   </div>
 </section>
 
+<!-- волна -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path class="wave-line wave-anim" d="M-100,35 C200,8 400,62 720,35 C1040,8 1240,62 1540,35"/>
+    <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,44 C250,16 450,66 720,42 C1000,16 1200,64 1540,42"/>
+  </svg>
+  <div class="wave-diamond"></div>
+</div>
+
 <!-- ═══ МЕНЮ ═══ -->
 <section class="menu-section" id="menu">
   <div class="sec-divider top"></div>
@@ -871,6 +1033,15 @@
     </div>
   </div>
 </section>
+
+<!-- волна -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path class="wave-line wave-anim" d="M-100,35 C200,62 400,8 720,35 C1040,62 1240,8 1540,35"/>
+    <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,42 C250,66 450,12 720,40 C1000,64 1200,14 1540,40"/>
+  </svg>
+  <div class="wave-diamond"></div>
+</div>
 
 <!-- ═══ ГАЛЕРЕЯ ═══ -->
 <section class="gallery-section" id="gallery">
@@ -951,6 +1122,15 @@
   </div>
 </div>
 
+<!-- волна -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path class="wave-line wave-anim" d="M-100,35 C200,8 400,62 720,35 C1040,8 1240,62 1540,35"/>
+    <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,44 C250,16 450,66 720,42 C1000,16 1200,64 1540,42"/>
+  </svg>
+  <div class="wave-diamond"></div>
+</div>
+
 <!-- ═══ ПОЧЕМУ МЫ ═══ -->
 <section class="why-section">
   <div class="section-inner">
@@ -978,6 +1158,15 @@
     </div>
   </div>
 </section>
+
+<!-- волна -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path class="wave-line wave-anim" d="M-100,35 C200,62 400,8 720,35 C1040,62 1240,8 1540,35"/>
+    <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,42 C250,66 450,12 720,40 C1000,64 1200,14 1540,40"/>
+  </svg>
+  <div class="wave-diamond"></div>
+</div>
 
 <!-- ═══ КОНТАКТЫ ═══ -->
 <section class="contact-section" id="contact">
@@ -1082,6 +1271,12 @@
 </footer>
 
 <script>
+  // ═══ ПРЕЛОАДЕР ═══
+  window.addEventListener('load',()=>{
+    setTimeout(()=>document.getElementById('preloader')?.classList.add('hide'),2000);
+  });
+  setTimeout(()=>document.getElementById('preloader')?.classList.add('hide'),3500);
+
   // ═══ ПРОГРЕСС-БАР ═══
   window.addEventListener('scroll',()=>{
     const h=document.documentElement;
@@ -1165,6 +1360,109 @@
     }
   }
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb({target:document.getElementById('lightbox')})});
+
+  // ═══════════════════════════════════════════
+  // СОВРЕМЕННЫЕ 3D/5D ВЗАИМОДЕЙСТВИЯ
+  // ═══════════════════════════════════════════
+  const isTouch = window.matchMedia('(hover: none)').matches || window.innerWidth < 768;
+
+  // ─── 5D-параллакс шапки ───
+  const heroSection = document.querySelector('.hero');
+  const heroLayers = [
+    { sel:'.hero-badge', depth:18 },
+    { sel:'.hero-title', depth:26 },
+    { sel:'.hero-title-sub', depth:20 },
+    { sel:'.hero-desc', depth:14 },
+    { sel:'.hero-btns', depth:16 },
+    { sel:'.hero-stats', depth:10 },
+    { sel:'.hero-photo', depth:30 },
+  ];
+  if(heroSection && !isTouch){
+    heroLayers.forEach(l=>document.querySelectorAll(l.sel).forEach(n=>{
+      n.style.transition='transform .3s cubic-bezier(.16,1,.3,1)';n.style.willChange='transform';
+    }));
+    heroSection.addEventListener('mousemove',e=>{
+      const nx=e.clientX/window.innerWidth-0.5, ny=e.clientY/window.innerHeight-0.5;
+      heroLayers.forEach(l=>document.querySelectorAll(l.sel).forEach((n,i)=>{
+        const extra = n.classList.contains('hero-photo') ? (i*8) : 0;
+        n.style.transform=`translate3d(${nx*(l.depth+extra)}px,${ny*(l.depth+extra)}px,0)`;
+      }));
+    });
+    heroSection.addEventListener('mouseleave',()=>{
+      heroLayers.forEach(l=>document.querySelectorAll(l.sel).forEach(n=>n.style.transform=''));
+    });
+  }
+
+  // ─── Единый 3D-tilt карточек (наклон + плывущее содержимое) ───
+  function attachTilt(selector, maxTilt){
+    if(isTouch) return;
+    document.querySelectorAll(selector).forEach(card=>{
+      const cs=getComputedStyle(card);
+      if(cs.position==='static') card.style.position='relative';
+      let shine=card.querySelector('.tilt-shine');
+      if(!shine){
+        shine=document.createElement('div');
+        shine.className='tilt-shine';
+        shine.style.cssText='position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;z-index:3;background:radial-gradient(circle at var(--sx,50%) var(--sy,50%),rgba(255,255,255,.35) 0%,transparent 45%);mix-blend-mode:soft-light;';
+        card.appendChild(shine);
+      }
+      const layers=[...card.children].filter(c=>!c.classList.contains('tilt-shine'));
+      layers.forEach(l=>l.style.transition='transform .3s cubic-bezier(.16,1,.3,1)');
+      card.style.transition='transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s';
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+        const rx=(py-.5)*-maxTilt*2, ry=(px-.5)*maxTilt*2, nx=px-.5, ny=py-.5;
+        card.style.transform=`perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.025)`;
+        layers.forEach((l,i)=>{const d=8+i*4;l.style.transform=`translate3d(${nx*d}px,${ny*d}px,0)`;});
+        shine.style.setProperty('--sx',(px*100)+'%');
+        shine.style.setProperty('--sy',(py*100)+'%');
+        shine.style.opacity='1';
+      });
+      card.addEventListener('mouseleave',()=>{
+        card.style.transform='';
+        layers.forEach(l=>l.style.transform='');
+        shine.style.opacity='0';
+      });
+    });
+  }
+  attachTilt('.menu-card', 7);
+  attachTilt('.gallery-item', 8);
+  attachTilt('.why-item', 8);
+
+  // ─── Параллакс заголовков секций (как в шапке) ───
+  function parallaxGroup(triggerSel, items){
+    if(isTouch) return;
+    const trigger=document.querySelector(triggerSel);
+    if(!trigger) return;
+    items.forEach(it=>document.querySelectorAll(it.sel).forEach(n=>{
+      n.style.transition='transform .4s cubic-bezier(.16,1,.3,1)';n.style.willChange='transform';
+    }));
+    trigger.addEventListener('mousemove',e=>{
+      const r=trigger.getBoundingClientRect();
+      const nx=(e.clientX-r.left)/r.width-.5, ny=(e.clientY-r.top)/r.height-.5;
+      items.forEach(it=>document.querySelectorAll(it.sel).forEach(n=>{
+        n.style.transform=`translate3d(${nx*it.depth}px,${ny*it.depth}px,0)`;
+      }));
+    });
+    trigger.addEventListener('mouseleave',()=>{
+      items.forEach(it=>document.querySelectorAll(it.sel).forEach(n=>n.style.transform=''));
+    });
+  }
+  parallaxGroup('.menu-intro',[
+    { sel:'.menu-intro .s-label', depth:14 },
+    { sel:'.menu-intro .s-title', depth:26 },
+    { sel:'.menu-intro .s-sub', depth:16 },
+  ]);
+  parallaxGroup('#gallery .section-inner',[
+    { sel:'#gallery .s-label', depth:14 },
+    { sel:'#gallery .s-title', depth:26 },
+    { sel:'#gallery .s-divider', depth:12 },
+  ]);
+  parallaxGroup('#contact .section-inner',[
+    { sel:'#contact .contact-info h3', depth:22 },
+    { sel:'#contact .contact-info p', depth:14 },
+  ]);
 </script>
 </body>
 </html>
