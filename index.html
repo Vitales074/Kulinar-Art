@@ -81,32 +81,51 @@
     @keyframes gDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,50px) scale(1.12)}}
     @keyframes gDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-50px) scale(1.2)}}
 
-    /* ═══ БОКОВЫЕ ВРАЩАЮЩИЕСЯ КОЛЬЦА ═══ */
-    .side-decor{position:fixed;top:50%;width:620px;height:620px;z-index:-1;pointer-events:none}
-    .side-decor.left{left:-280px;transform:translateY(-50%)}
-    .side-decor.right{right:-280px;transform:translateY(-50%)}
-    .side-decor svg{width:100%;height:100%}
-    .side-decor .ring-rot{transform-origin:center}
-    .side-decor.left .ring-rot{animation:ringSpin 45s linear infinite}
-    .side-decor.right .ring-rot{animation:ringSpin 55s linear infinite reverse}
-    @keyframes ringSpin{to{transform:rotate(360deg)}}
-    @media(max-width:900px){.side-decor{display:none}}
+    /* ═══ ЛЕТАЮЩАЯ ЕДА (вместо колец) ═══ */
+    .food-float{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+    .food-item{
+      position:absolute;
+      font-size:2.4rem;
+      filter:drop-shadow(0 8px 16px rgba(140,90,40,.3));
+      will-change:transform,margin;
+      opacity:.6;
+    }
+    /* каждый плавает и крутится по-своему */
+    .food-item.f1{top:12%;left:4%;  animation:floatA 14s ease-in-out infinite}
+    .food-item.f2{top:24%;right:5%; animation:floatB 17s ease-in-out infinite}
+    .food-item.f3{top:55%;left:3%;  animation:floatC 15s ease-in-out infinite}
+    .food-item.f4{bottom:14%;right:4%;animation:floatA 19s ease-in-out infinite}
+    .food-item.f5{bottom:26%;left:6%; animation:floatB 16s ease-in-out infinite}
+    .food-item.f6{top:40%;right:3%;  animation:floatC 21s ease-in-out infinite}
+    .food-item.f7{top:8%;right:18%;  animation:floatA 18s ease-in-out infinite}
+    .food-item.f8{bottom:8%;left:20%; animation:floatB 20s ease-in-out infinite}
+    @keyframes floatA{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-40px) rotate(12deg)}}
+    @keyframes floatB{0%,100%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-55px) rotate(-14deg)}}
+    @keyframes floatC{0%,100%{transform:translate(0,0) rotate(0)}33%{transform:translate(20px,-30px) rotate(10deg)}66%{transform:translate(-15px,-50px) rotate(-8deg)}}
+    @media(max-width:768px){.food-item{font-size:1.8rem;opacity:.6}.food-item.f7,.food-item.f8{display:none}}
 
     /* виньетка для глубины (светлая) */
     .vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;
       background:radial-gradient(ellipse 85% 95% at 50% 50%, transparent 60%, rgba(140,110,70,.12) 100%);}
 
-    /* ═══ ВОЛНЫ-РАЗДЕЛИТЕЛИ ═══ */
-    .wave-divider{position:relative;width:100%;height:70px;margin:-35px 0;z-index:5;pointer-events:none;overflow:hidden}
-    .wave-divider svg{position:absolute;width:100%;height:100%;left:0;top:0}
-    .wave-line{fill:none;stroke:rgba(201,148,58,.4);stroke-width:2}
-    .wave-line.thin{stroke:rgba(61,122,82,.3);stroke-width:1.5}
-    .wave-anim{animation:waveFloat 8s ease-in-out infinite}
-    @keyframes waveFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(-40px)}}
-    .wave-diamond{position:absolute;top:50%;left:50%;width:12px;height:12px;
-      transform:translate(-50%,-50%) rotate(45deg);background:var(--gold);
-      box-shadow:0 0 20px rgba(201,148,58,.6);z-index:6;animation:diamondPulse 3s ease-in-out infinite}
-    @keyframes diamondPulse{0%,100%{box-shadow:0 0 18px rgba(201,148,58,.6);transform:translate(-50%,-50%) rotate(45deg) scale(1)}50%{box-shadow:0 0 28px rgba(201,148,58,.9);transform:translate(-50%,-50%) rotate(45deg) scale(1.2)}}
+    /* ═══ СЛАДКИЙ РАЗДЕЛИТЕЛЬ (пунктир + пончик) ═══ */
+    .wave-divider{position:relative;width:100%;height:60px;margin:-10px 0;z-index:5;pointer-events:none;
+      display:flex;align-items:center;justify-content:center;}
+    .wave-divider svg{display:none;} /* прячем старую волну */
+    .sweet-line{
+      flex:1;height:0;
+      border-top:2px dashed rgba(201,148,58,.4);
+      max-width:38%;
+    }
+    .sweet-line.green{border-top-color:rgba(61,122,82,.35);}
+    .wave-diamond{
+      position:relative;top:auto;left:auto;transform:none;width:auto;height:auto;background:none;box-shadow:none;
+      font-size:1.6rem;margin:0 18px;
+      animation:donutSpin 6s linear infinite;
+      filter:drop-shadow(0 4px 8px rgba(201,148,58,.4));
+    }
+    .wave-diamond::before{content:'🍩';}
+    @keyframes donutSpin{to{transform:rotate(360deg);}}
 
     /* ═══ ПРОГРЕСС-БАР ПРОКРУТКИ ═══ */
     .scroll-progress{
@@ -865,30 +884,16 @@
   <div class="g-orb green g5"></div>
 </div>
 
-<!-- ═══ БОКОВЫЕ КОЛЬЦА ═══ -->
-<div class="side-decor left">
-  <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-    <g class="ring-rot">
-      <circle cx="300" cy="300" r="290" fill="none" stroke="rgba(201,148,58,.35)" stroke-width="1.5"/>
-      <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(201,148,58,.25)" stroke-width="1.5" stroke-dasharray="8 14"/>
-      <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(61,122,82,.4)" stroke-width="2"/>
-      <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(201,148,58,.2)" stroke-width="1" stroke-dasharray="3 10"/>
-      <circle cx="300" cy="10" r="6" fill="rgba(201,148,58,.7)"/>
-      <circle cx="300" cy="110" r="4" fill="rgba(61,122,82,.6)"/>
-    </g>
-  </svg>
-</div>
-<div class="side-decor right">
-  <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-    <g class="ring-rot">
-      <circle cx="300" cy="300" r="290" fill="none" stroke="rgba(201,148,58,.35)" stroke-width="1.5"/>
-      <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(201,148,58,.25)" stroke-width="1.5" stroke-dasharray="8 14"/>
-      <circle cx="300" cy="300" r="190" fill="none" stroke="rgba(61,122,82,.4)" stroke-width="2"/>
-      <circle cx="300" cy="300" r="140" fill="none" stroke="rgba(201,148,58,.2)" stroke-width="1" stroke-dasharray="3 10"/>
-      <circle cx="300" cy="590" r="6" fill="rgba(201,148,58,.7)"/>
-      <circle cx="300" cy="490" r="4" fill="rgba(61,122,82,.6)"/>
-    </g>
-  </svg>
+<!-- ═══ ЛЕТАЮЩАЯ ЕДА ═══ -->
+<div class="food-float" id="foodFloat">
+  <span class="food-item f1" data-depth="40">🍩</span>
+  <span class="food-item f2" data-depth="60">🧁</span>
+  <span class="food-item f3" data-depth="30">🥐</span>
+  <span class="food-item f4" data-depth="55">🍰</span>
+  <span class="food-item f5" data-depth="35">🍓</span>
+  <span class="food-item f6" data-depth="50">🥖</span>
+  <span class="food-item f7" data-depth="45">🍪</span>
+  <span class="food-item f8" data-depth="38">🫐</span>
 </div>
 
 <!-- виньетка -->
@@ -984,7 +989,9 @@
     <path class="wave-line wave-anim" d="M-100,35 C200,8 400,62 720,35 C1040,8 1240,62 1540,35"/>
     <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,44 C250,16 450,66 720,42 C1000,16 1200,64 1540,42"/>
   </svg>
+  <div class="sweet-line"></div>
   <div class="wave-diamond"></div>
+  <div class="sweet-line green"></div>
 </div>
 
 <!-- ═══ МЕНЮ ═══ -->
@@ -1040,7 +1047,9 @@
     <path class="wave-line wave-anim" d="M-100,35 C200,62 400,8 720,35 C1040,62 1240,8 1540,35"/>
     <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,42 C250,66 450,12 720,40 C1000,64 1200,14 1540,40"/>
   </svg>
+  <div class="sweet-line"></div>
   <div class="wave-diamond"></div>
+  <div class="sweet-line green"></div>
 </div>
 
 <!-- ═══ ГАЛЕРЕЯ ═══ -->
@@ -1128,7 +1137,9 @@
     <path class="wave-line wave-anim" d="M-100,35 C200,8 400,62 720,35 C1040,8 1240,62 1540,35"/>
     <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,44 C250,16 450,66 720,42 C1000,16 1200,64 1540,42"/>
   </svg>
+  <div class="sweet-line"></div>
   <div class="wave-diamond"></div>
+  <div class="sweet-line green"></div>
 </div>
 
 <!-- ═══ ПОЧЕМУ МЫ ═══ -->
@@ -1165,7 +1176,9 @@
     <path class="wave-line wave-anim" d="M-100,35 C200,62 400,8 720,35 C1040,62 1240,8 1540,35"/>
     <path class="wave-line thin wave-anim" style="animation-delay:-2s" d="M-100,42 C250,66 450,12 720,40 C1000,64 1200,14 1540,40"/>
   </svg>
+  <div class="sweet-line"></div>
   <div class="wave-diamond"></div>
+  <div class="sweet-line green"></div>
 </div>
 
 <!-- ═══ КОНТАКТЫ ═══ -->
@@ -1365,6 +1378,30 @@
   // СОВРЕМЕННЫЕ 3D/5D ВЗАИМОДЕЙСТВИЯ
   // ═══════════════════════════════════════════
   const isTouch = window.matchMedia('(hover: none)').matches || window.innerWidth < 768;
+
+  // ─── 5D-параллакс летающей еды (реагирует на мышь по всему сайту) ───
+  const foodItems = [...document.querySelectorAll('.food-item')];
+  if(!isTouch && foodItems.length){
+    let fx=0, fy=0;
+    document.addEventListener('mousemove', e=>{
+      fx = e.clientX/window.innerWidth - 0.5;
+      fy = e.clientY/window.innerHeight - 0.5;
+    });
+    (function foodLoop(){
+      foodItems.forEach(item=>{
+        const d = +item.dataset.depth || 40;
+        // плавно догоняем позицию курсора (глубина 5D)
+        const tx = fx * d, ty = fy * d;
+        const cur = item._p || {x:0,y:0};
+        cur.x += (tx - cur.x)*0.06;
+        cur.y += (ty - cur.y)*0.06;
+        item._p = cur;
+        item.style.marginLeft = cur.x+'px';
+        item.style.marginTop = cur.y+'px';
+      });
+      requestAnimationFrame(foodLoop);
+    })();
+  }
 
   // ─── 5D-параллакс шапки ───
   const heroSection = document.querySelector('.hero');
