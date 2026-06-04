@@ -652,19 +652,28 @@
     .section-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
 
     .s-label{
-      font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;
-      color:var(--green);font-weight:700;margin-bottom:10px;
-      display:flex;align-items:center;gap:10px;
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+      font-size:1.3rem;letter-spacing:.02em;text-transform:none;
+      color:var(--gold);margin-bottom:4px;
+      display:flex;align-items:center;gap:12px;
     }
     @media(max-width:900px){.s-label{justify-content:center}}
-    .s-label::before{content:'';width:28px;height:2px;background:var(--green);border-radius:2px}
+    .s-label::before{content:'';width:42px;height:1px;background:linear-gradient(to right,var(--gold),transparent);border-radius:0}
+    .s-label.center{justify-content:center}
+    .s-label.center::after{content:'';width:42px;height:1px;background:linear-gradient(to left,var(--gold),transparent)}
 
     .s-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2rem,4vw,3rem);font-weight:700;
-      color:var(--dark);line-height:1.15;margin-bottom:16px;
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.6rem,5vw,4rem);font-weight:600;
+      color:var(--dark);line-height:1.02;letter-spacing:-.01em;margin-bottom:16px;
     }
-    .s-title span{color:var(--green);font-style:italic}
+    .s-title span{
+      font-style:italic;font-weight:600;
+      background:linear-gradient(110deg,#3d7a52 0%,#c9943a 35%,#e8b86d 50%,#3d7a52 70%,#c9943a 100%);
+      background-size:220% auto;
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      animation:shimmerText 5s linear infinite;
+    }
     .s-title-center{text-align:center}
 
     .s-sub{font-size:1rem;color:var(--text2);line-height:1.8;max-width:560px}
@@ -1284,7 +1293,7 @@
   <div class="sec-diamond left" style="top:30%"></div>
   <div class="sec-diamond right" style="top:70%"></div>
   <div class="section-inner">
-    <div class="s-label" style="justify-content:center" class="reveal">Наши работы</div>
+    <div class="s-label center reveal">Наши работы</div>
     <h2 class="s-title s-title-center reveal">Галерея <span>вкусного искусства</span></h2>
     <div class="s-divider reveal"><div class="s-divider-dot"></div></div>
 
