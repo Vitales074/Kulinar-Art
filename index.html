@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Кулинарный Арт — Еда на заказ · г. Снежинск</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marck+Script&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -279,13 +279,30 @@
     }
 
     .nav-logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.75rem;font-weight:900;font-style:italic;
-      color:var(--green);letter-spacing:.02em;text-decoration:none;
-      display:flex;align-items:center;gap:4px;
-      text-shadow:0 2px 12px rgba(45,90,61,.12);
+      display:flex;align-items:center;gap:13px;text-decoration:none;
     }
-    .nav-logo span{color:var(--gold)}
+    .nav-logo .logo-mark{
+      width:46px;height:46px;flex-shrink:0;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.3rem;
+      box-shadow:0 4px 14px rgba(45,90,61,.3), inset 0 0 0 2px rgba(232,184,109,.5);
+      transition:transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-logo:hover .logo-mark{transform:rotate(-12deg) scale(1.08)}
+    .nav-logo .logo-text{display:flex;flex-direction:column;line-height:1}
+    .nav-logo .logo-name{
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem;font-weight:700;font-style:italic;
+      color:var(--green);letter-spacing:.01em;
+    }
+    .nav-logo .logo-name b{color:var(--gold);font-weight:700}
+    .nav-logo .logo-sub{
+      font-family:'Raleway',sans-serif;
+      font-size:.58rem;font-weight:600;letter-spacing:.32em;
+      color:var(--text2);text-transform:uppercase;margin-top:3px;
+    }
 
     /* разделитель между логотипом и ссылками */
     .nav-sep{
@@ -398,23 +415,24 @@
 
     /* декоративная надпись над заголовком */
     .hero-eyebrow{
-      font-family:'Playfair Display',serif;font-style:italic;
-      font-size:1.15rem;color:var(--gold);
-      margin-bottom:6px;display:flex;align-items:center;gap:12px;
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+      font-size:1.45rem;color:var(--gold);
+      margin-bottom:2px;display:flex;align-items:center;gap:14px;
+      letter-spacing:.02em;
     }
-    .hero-eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent)}
+    .hero-eyebrow::before{content:'';width:46px;height:1px;background:linear-gradient(to right,var(--gold),transparent)}
     @media(max-width:900px){.hero-eyebrow{justify-content:center}.hero-eyebrow::before{display:none}}
 
     .hero-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(3rem,6.5vw,5.2rem);
-      font-weight:800;line-height:1.02;
-      letter-spacing:-.02em;
-      color:var(--dark);margin-bottom:18px;
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(3.6rem,8vw,6.4rem);
+      font-weight:600;line-height:.96;
+      letter-spacing:-.01em;
+      color:var(--dark);margin-bottom:20px;
     }
     .hero-title .light{font-weight:400;font-style:italic;color:var(--text2);}
     .hero-title span{
-      font-style:italic;
+      font-style:italic;font-weight:600;
       background:linear-gradient(110deg,#3d7a52 0%,#c9943a 35%,#e8b86d 50%,#3d7a52 70%,#c9943a 100%);
       background-size:220% auto;
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
@@ -422,8 +440,8 @@
     }
     @keyframes shimmerText{to{background-position:220% center}}
     .hero-title-sub{
-      font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
-      font-size:clamp(1.2rem,2.4vw,1.6rem);
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+      font-size:clamp(1.3rem,2.6vw,1.75rem);
       color:var(--gold);
       margin-bottom:26px;display:flex;align-items:center;gap:12px;
       letter-spacing:.02em;
@@ -958,7 +976,13 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Кулинарный <span>Арт</span></a>
+  <a class="nav-logo" href="#">
+    <span class="logo-mark">🍴</span>
+    <span class="logo-text">
+      <span class="logo-name">Кулинарный <b>Арт</b></span>
+      <span class="logo-sub">студия · Снежинск</span>
+    </span>
+  </a>
   <div class="nav-sep"></div>
   <div class="nav-center">
     <ul class="nav-links">
@@ -1438,26 +1462,35 @@
     })();
   }
 
-  // ─── 5D-параллакс шапки ───
+  // ─── 5D-ВРАЩЕНИЕ + ПАРАЛЛАКС НАДПИСЕЙ ШАПКИ ───
   const heroSection = document.querySelector('.hero');
+  // depth — сила сдвига, rot — сила 3D-поворота
   const heroLayers = [
-    { sel:'.hero-badge', depth:18 },
-    { sel:'.hero-title', depth:26 },
-    { sel:'.hero-title-sub', depth:20 },
-    { sel:'.hero-desc', depth:14 },
-    { sel:'.hero-btns', depth:16 },
-    { sel:'.hero-stats', depth:10 },
-    { sel:'.hero-photo', depth:30 },
+    { sel:'.hero-eyebrow',   depth:16, rot:8 },
+    { sel:'.hero-badge',     depth:20, rot:10 },
+    { sel:'.hero-title',     depth:28, rot:7 },
+    { sel:'.hero-title-sub', depth:22, rot:9 },
+    { sel:'.hero-desc',      depth:14, rot:5 },
+    { sel:'.hero-btns',      depth:18, rot:6 },
+    { sel:'.hero-stats',     depth:11, rot:4 },
+    { sel:'.hero-photo',     depth:34, rot:6 },
   ];
   if(heroSection && !isTouch){
     heroLayers.forEach(l=>document.querySelectorAll(l.sel).forEach(n=>{
-      n.style.transition='transform .3s cubic-bezier(.16,1,.3,1)';n.style.willChange='transform';
+      n.style.transition='transform .3s cubic-bezier(.16,1,.3,1)';
+      n.style.willChange='transform';
+      n.style.transformStyle='preserve-3d';
     }));
     heroSection.addEventListener('mousemove',e=>{
       const nx=e.clientX/window.innerWidth-0.5, ny=e.clientY/window.innerHeight-0.5;
       heroLayers.forEach(l=>document.querySelectorAll(l.sel).forEach((n,i)=>{
         const extra = n.classList.contains('hero-photo') ? (i*8) : 0;
-        n.style.transform=`translate3d(${nx*(l.depth+extra)}px,${ny*(l.depth+extra)}px,0)`;
+        const tx = nx*(l.depth+extra), ty = ny*(l.depth+extra);
+        // 5D: сдвиг + поворот вокруг X и Y (надписи "крутятся" в пространстве)
+        const rx = ny * -l.rot;
+        const ry = nx * l.rot;
+        n.style.transform =
+          `perspective(900px) translate3d(${tx}px,${ty}px,0) rotateX(${rx}deg) rotateY(${ry}deg)`;
       }));
     });
     heroSection.addEventListener('mouseleave',()=>{
