@@ -21,7 +21,142 @@
       --text2:  #6b5a42;
     }
     html{scroll-behavior:smooth;font-size:112%}
-    body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+    body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;cursor:default}
+
+    /* ═══ ПРОГРЕСС-БАР ПРОКРУТКИ ═══ */
+    .scroll-progress{
+      position:fixed;top:0;left:0;width:0%;height:3px;
+      background:linear-gradient(to right,var(--green),var(--gold),var(--green));
+      z-index:9999;transition:width .1s ease;
+      box-shadow:0 0 12px rgba(201,148,58,.5);
+    }
+
+    /* ═══ КАСТОМНЫЙ КУРСОР ═══ */
+    .cursor-dot,.cursor-ring{
+      position:fixed;pointer-events:none;z-index:9998;
+      transform:translate(-50%,-50%);
+      transition:transform .15s ease-out,width .25s,height .25s,opacity .25s;
+    }
+    .cursor-dot{width:6px;height:6px;background:var(--green);border-radius:50%}
+    .cursor-ring{
+      width:36px;height:36px;
+      border:1.5px solid rgba(45,90,61,.45);
+      border-radius:50%;
+      transition:transform .35s cubic-bezier(.16,1,.3,1),width .25s,height .25s;
+    }
+    .cursor-ring.hover{
+      width:60px;height:60px;
+      border-color:var(--gold);
+      background:rgba(201,148,58,.1);
+    }
+    @media(max-width:768px){.cursor-dot,.cursor-ring{display:none}}
+
+    /* ═══ ПЛАВАЮЩИЕ ЧАСТИЦЫ ═══ */
+    .particles{position:fixed;inset:0;pointer-events:none;z-index:1}
+    .particle{
+      position:absolute;width:5px;height:5px;
+      background:var(--gold);border-radius:50%;
+      opacity:0;animation:floatUp 15s linear infinite;
+      box-shadow:0 0 10px rgba(201,148,58,.7);
+    }
+    @keyframes floatUp{
+      0%{opacity:0;transform:translateY(100vh) translateX(0) scale(0)}
+      10%{opacity:.5;transform:translateY(85vh) translateX(20px) scale(1)}
+      90%{opacity:.5;transform:translateY(10vh) translateX(-30px) scale(1)}
+      100%{opacity:0;transform:translateY(-10vh) translateX(0) scale(0)}
+    }
+
+    /* ═══ ШУМ-ТЕКСТУРА ═══ */
+    body::before{
+      content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ═══ ВЫДЕЛЕНИЕ ТЕКСТА ═══ */
+    ::selection{background:var(--green);color:white}
+    ::-moz-selection{background:var(--green);color:white}
+
+    /* ═══ КАСТОМНЫЙ SCROLLBAR ═══ */
+    ::-webkit-scrollbar{width:10px}
+    ::-webkit-scrollbar-track{background:var(--cream2)}
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(to bottom,var(--green),var(--green2));
+      border-radius:5px;border:2px solid var(--cream2);
+    }
+    ::-webkit-scrollbar-thumb:hover{background:linear-gradient(to bottom,var(--gold),var(--green))}
+
+    /* ═══ КНОПКА ВВЕРХ ═══ */
+    .scroll-top{
+      position:fixed;bottom:28px;right:28px;
+      width:52px;height:52px;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      border:none;border-radius:50%;cursor:pointer;z-index:99;
+      opacity:0;pointer-events:none;
+      transition:all .4s cubic-bezier(.16,1,.3,1);
+      box-shadow:0 10px 30px rgba(45,90,61,.4);
+      display:flex;align-items:center;justify-content:center;
+      color:white;font-size:1.2rem;
+    }
+    .scroll-top.show{opacity:1;pointer-events:all}
+    .scroll-top:hover{
+      transform:translateY(-5px) scale(1.05);
+      box-shadow:0 16px 40px rgba(45,90,61,.5),0 0 0 8px rgba(45,90,61,.15);
+    }
+    .scroll-top::before{
+      content:'';position:absolute;inset:-4px;border-radius:50%;
+      border:1px solid rgba(45,90,61,.3);animation:pulseRing 2s infinite;
+    }
+    @keyframes pulseRing{
+      0%{transform:scale(1);opacity:1}
+      100%{transform:scale(1.5);opacity:0}
+    }
+
+    /* ═══ WHATSAPP ═══ */
+    .whatsapp-float{
+      position:fixed;bottom:28px;left:28px;
+      width:60px;height:60px;
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      z-index:99;text-decoration:none;color:white;
+      box-shadow:0 10px 30px rgba(37,211,102,.4);
+      transition:all .3s;animation:bounceWA 2.5s infinite;
+    }
+    .whatsapp-float:hover{transform:scale(1.15) rotate(-5deg);box-shadow:0 16px 40px rgba(37,211,102,.6)}
+    .whatsapp-float::after{
+      content:'';position:absolute;inset:0;border-radius:50%;
+      border:2px solid rgba(37,211,102,.6);animation:pulseWA 2s infinite;
+    }
+    @keyframes pulseWA{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+    @keyframes bounceWA{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+    /* ═══ МАГНИТНЫЕ КНОПКИ ═══ */
+    .magnetic{transition:transform .25s cubic-bezier(.16,1,.3,1)}
+
+    /* ═══ ПОДСВЕТКА КАРТОЧЕК ═══ */
+    .menu-card,.master-card,.gallery-item,.why-item{position:relative}
+    .menu-card::after,.master-card::after{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(201,148,58,.15) 0%,transparent 50%);
+      opacity:0;transition:opacity .3s;pointer-events:none;border-radius:inherit;
+    }
+    .menu-card:hover::after,.master-card:hover::after{opacity:1}
+
+    /* ═══ АНИМАЦИЯ ЦИФР HERO ═══ */
+    @keyframes countUp{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* ═══ ПЛАВАЮЩИЕ ИКОНКИ ЕДЫ В HERO ═══ */
+    .food-emoji{
+      position:absolute;font-size:2rem;opacity:.15;
+      animation:floatFood 8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes floatFood{
+      0%,100%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-20px) rotate(10deg)}
+    }
 
     /* ── NAV ── */
     nav{
@@ -565,6 +700,24 @@
 </head>
 <body>
 
+<!-- ═══ ПРОГРЕСС-БАР ═══ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ═══ КУРСОР ═══ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══ ЧАСТИЦЫ ═══ -->
+<div class="particles" id="particles"></div>
+
+<!-- ═══ КНОПКА ВВЕРХ ═══ -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Наверх">▲</button>
+
+<!-- ═══ WHATSAPP ═══ -->
+<a href="https://wa.me/79925110611" target="_blank" class="whatsapp-float" title="Написать в WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.528 5.855L0 24l6.335-1.508A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+</a>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Кулинарный <span>Арт</span></a>
@@ -585,6 +738,12 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="home">
+  <!-- Плавающие emoji еды -->
+  <span class="food-emoji" style="top:15%;left:5%;animation-delay:0s">🍽️</span>
+  <span class="food-emoji" style="top:25%;right:8%;animation-delay:1s">✨</span>
+  <span class="food-emoji" style="bottom:30%;left:8%;animation-delay:2s">🌿</span>
+  <span class="food-emoji" style="bottom:15%;right:5%;animation-delay:3s">🍰</span>
+  <span class="food-emoji" style="top:50%;left:3%;animation-delay:1.5s">🥐</span>
   <div class="hero-left">
     <div class="hero-badge">г. Снежинск и область</div>
     <h1 class="hero-title">Еда,<br>которая <span>вдохновляет</span></h1>
@@ -934,6 +1093,64 @@
 </footer>
 
 <script>
+  // ═══ ПРОГРЕСС-БАР ═══
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const s=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+    document.getElementById('scrollProgress').style.width=s+'%';
+    const t=document.getElementById('scrollTop');
+    if(h.scrollTop>500)t.classList.add('show');else t.classList.remove('show');
+  });
+
+  // ═══ КУРСОР ═══
+  const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,.menu-card,.gallery-item,.master-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+  });
+
+  // ═══ ЧАСТИЦЫ ═══
+  const ps=document.getElementById('particles');
+  for(let i=0;i<12;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDelay=Math.random()*15+'s';
+    p.style.animationDuration=(10+Math.random()*10)+'s';
+    ps.appendChild(p);
+  }
+
+  // ═══ ПОДСВЕТКА КАРТОЧЕК ═══
+  document.querySelectorAll('.menu-card,.master-card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+      c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+    });
+  });
+
+  // ═══ МАГНИТНЫЕ КНОПКИ ═══
+  document.querySelectorAll('.btn-primary,.btn-secondary,.nav-cta').forEach(b=>{
+    b.classList.add('magnetic');
+    b.addEventListener('mousemove',e=>{
+      const r=b.getBoundingClientRect();
+      const x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
+      b.style.transform=`translate(${x*.15}px,${y*.15}px)`;
+    });
+    b.addEventListener('mouseleave',()=>{b.style.transform=''});
+  });
+
+  // ═══ REVEAL ═══
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
