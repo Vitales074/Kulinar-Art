@@ -325,19 +325,44 @@
     .nav-links a:hover{color:var(--green)}
     .nav-links a:hover::after{transform:scaleX(1)}
 
-    .nav-right{display:flex;align-items:center;gap:16px}
+    .nav-right{display:flex;align-items:center;gap:18px}
+    /* телефон с иконкой — профессионально */
     .nav-phone{
-      font-size:.82rem;font-weight:600;color:var(--text2);
-      text-decoration:none;letter-spacing:.04em;transition:color .2s;
+      display:flex;align-items:center;gap:10px;
+      text-decoration:none;transition:transform .25s;
     }
-    .nav-phone:hover{color:var(--green)}
+    .nav-phone .phone-ico{
+      width:34px;height:34px;flex-shrink:0;
+      border-radius:50%;
+      background:rgba(45,90,61,.1);
+      border:1px solid rgba(45,90,61,.25);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--green);font-size:.85rem;
+      transition:all .3s;
+    }
+    .nav-phone .phone-text{display:flex;flex-direction:column;line-height:1.1}
+    .nav-phone .phone-label{font-size:.56rem;font-weight:600;letter-spacing:.18em;color:var(--text2);text-transform:uppercase}
+    .nav-phone .phone-num{font-size:.92rem;font-weight:700;color:var(--dark);letter-spacing:.01em;font-family:'Raleway',sans-serif}
+    .nav-phone:hover .phone-ico{background:var(--green);color:#fff;transform:rotate(12deg) scale(1.05)}
+    .nav-phone:hover .phone-num{color:var(--green)}
+
     .nav-cta{
-      padding:11px 26px;background:var(--green);color:white;
-      font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-      text-decoration:none;border-radius:4px;transition:all .3s;
-      box-shadow:0 4px 16px rgba(45,90,61,.25);
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 26px;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:white;
+      font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      text-decoration:none;border-radius:30px;transition:all .3s;
+      box-shadow:0 6px 18px rgba(45,90,61,.3);
+      position:relative;overflow:hidden;
     }
-    .nav-cta:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,90,61,.3)}
+    .nav-cta::after{
+      content:'';position:absolute;top:0;left:-120%;width:70%;height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+      transform:skewX(-20deg);animation:btnShine 4s ease-in-out infinite;
+    }
+    @keyframes btnShine{0%,100%{left:-120%}45%,55%{left:130%}}
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(45,90,61,.4)}
     @media(max-width:768px){
       nav{padding:0 14px;height:60px}
       .nav-links,.nav-sep,.nav-phone{display:none}
@@ -992,8 +1017,14 @@
     </ul>
   </div>
   <div class="nav-right">
-    <a class="nav-phone" href="tel:+79925110611">+7 992 511 06 11</a>
-    <a class="nav-cta" href="#contact">Заказать</a>
+    <a class="nav-phone" href="tel:+79925110611">
+      <span class="phone-ico">📞</span>
+      <span class="phone-text">
+        <span class="phone-label">Звоните</span>
+        <span class="phone-num">+7 992 511 06 11</span>
+      </span>
+    </a>
+    <a class="nav-cta" href="#contact">✦ Заказать</a>
   </div>
 </nav>
 
