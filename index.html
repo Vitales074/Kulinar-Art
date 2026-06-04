@@ -40,6 +40,34 @@
     .gold-corner.bl{bottom:6px;left:6px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold)}
     .gold-corner.br{bottom:6px;right:6px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
 
+    /* ═══ БЕГУЩАЯ ЗОЛОТАЯ РАМКА ВОКРУГ ФОТО ═══ */
+    .glow-frame{
+      position:relative;
+      border-radius:20px;
+      padding:4px;
+      overflow:hidden;
+      box-shadow:0 18px 50px rgba(140,100,50,.22);
+    }
+    .glow-frame::before{
+      content:'';
+      position:absolute;
+      top:50%;left:50%;
+      width:160%;height:160%;
+      transform:translate(-50%,-50%);
+      background:conic-gradient(from 0deg,
+        transparent 0%, transparent 8%,
+        #c9943a 14%, #f0cd85 20%, #fff6d8 23%, #e8b86d 26%, #c9943a 32%,
+        transparent 40%, transparent 100%);
+      animation:rotateBorder 3.5s linear infinite;
+      z-index:0;
+    }
+    @keyframes rotateBorder{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    .glow-frame img{
+      position:relative;z-index:1;
+      display:block;width:100%;
+      border-radius:16px;
+    }
+
     /* ═══ ПРЕЛОАДЕР ═══ */
     .preloader{
       position:fixed;inset:0;z-index:100000;
@@ -1203,7 +1231,9 @@
         <p class="s-sub">Готовим только на заказ, из свежих продуктов, с вниманием к каждой детали. Авторские рецепты и красивая подача — наш фирменный стиль.</p>
       </div>
       <div class="reveal-right">
-        <img src="fofan.jpg" alt="Наши работы" style="width:100%;border-radius:12px;box-shadow:0 16px 50px rgba(0,0,0,.12);display:block" onerror="this.style.display='none'">
+        <div class="glow-frame">
+          <img src="fofan.jpg" alt="Наши работы" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
