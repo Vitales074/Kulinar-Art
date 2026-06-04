@@ -293,11 +293,24 @@
     @media(max-width:900px){.hero-btns{justify-content:center}}
 
     .btn-primary{
+      display:inline-block;
       padding:16px 36px;background:var(--green);color:white;
       font-family:'Raleway',sans-serif;font-size:.82rem;font-weight:700;
       letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
       border-radius:3px;transition:all .3s;
       box-shadow:0 8px 24px rgba(45,90,61,.25);
+      white-space:nowrap;
+    }
+    @media(max-width:600px){
+      .btn-primary{
+        padding:14px 22px;font-size:.72rem;letter-spacing:.08em;
+        white-space:normal;text-align:center;display:block;width:100%;
+      }
+      .btn-secondary{
+        padding:13px 22px;font-size:.72rem;letter-spacing:.08em;
+        white-space:normal;text-align:center;display:block;width:100%;
+      }
+      .hero-btns{flex-direction:column;width:100%}
     }
     .btn-primary:hover{background:var(--green2);transform:translateY(-3px);box-shadow:0 14px 32px rgba(45,90,61,.3)}
     .btn-secondary{
