@@ -170,11 +170,8 @@
     .wave-diamond{
       position:relative;top:auto;left:auto;transform:none;width:auto;height:auto;background:none;box-shadow:none;
       font-size:1.6rem;margin:0 18px;
-      animation:donutSpin 6s linear infinite;
       filter:drop-shadow(0 4px 8px rgba(201,148,58,.4));
     }
-    .wave-diamond::before{content:'🍩';}
-    @keyframes donutSpin{to{transform:rotate(360deg);}}
 
     /* ═══ ПРОГРЕСС-БАР ПРОКРУТКИ ═══ */
     .scroll-progress{
@@ -1248,7 +1245,7 @@
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Наверх">▲</button>
 
 <!-- ═══ WHATSAPP ═══ -->
-<a href="https://wa.me/79925110611" target="_blank" class="whatsapp-float" title="Написать в WhatsApp">
+<a href="https://wa.me/79925110611" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Написать в WhatsApp">
   <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.528 5.855L0 24l6.335-1.508A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
 </a>
 
@@ -1324,20 +1321,20 @@
 
   <div class="hero-right">
     <div class="hero-photo">
-      <img src="food2.jpg" alt="Фуршет" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="food2.jpg" alt="Фуршет" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hero-photo-placeholder" style="display:none"><span>🍢</span><span>food2.jpg</span></div>
       <div class="hero-photo-badge"><span class="star">★</span> 5.0 · 1200+ клиентов</div>
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <span class="glass"></span>
     </div>
     <div class="hero-photo">
-      <img src="food1.jpg" alt="Блины" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="food1.jpg" alt="Блины" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hero-photo-placeholder" style="display:none"><span>🥞</span><span>food1.jpg</span></div>
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <span class="glass"></span>
     </div>
     <div class="hero-photo">
-      <img src="food3.jpg" alt="Выпечка" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="food3.jpg" alt="Выпечка" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hero-photo-placeholder" style="display:none"><span>🎂</span><span>food3.jpg</span></div>
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <span class="glass"></span>
@@ -1449,52 +1446,52 @@
 
     <div class="gallery-grid">
       <div class="gallery-item" onclick="openLb('food2.jpg','Фуршетный набор — канапе, тарталетки, мясные розочки')">
-        <img src="food2.jpg" alt="Фуршет" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food2.jpg" alt="Фуршет" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🍢</span><span>food2.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Фуршет</div><div class="gallery-name">Фуршетный набор с канапе и тарталетками</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food1.jpg','Блины с начинками — красивая фуршетная подача')">
-        <img src="food1.jpg" alt="Блины" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food1.jpg" alt="Блины" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🥞</span><span>food1.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Блины</div><div class="gallery-name">Блины с начинками — фуршетная подача</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food6.jpg','Волованы с яйцом и томатами')">
-        <img src="food6.jpg" alt="Волованы" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food6.jpg" alt="Волованы" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🥐</span><span>food6.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Выпечка</div><div class="gallery-name">Волованы с яйцом и томатами</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food71.jpg','Вафельные орешки на шпажках — оригинальная подача')">
-        <img src="food71.jpg" alt="Орешки" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food71.jpg" alt="Орешки" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🍪</span><span>food71.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Выпечка</div><div class="gallery-name">Вафельные орешки — букет на шпажках</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food72.jpg','Ассорти закусок — канапе, тарталетки, мясные рулеты')">
-        <img src="food72.jpg" alt="Ассорти" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food72.jpg" alt="Ассорти" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🍢</span><span>food72.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Фуршет</div><div class="gallery-name">Ассорти — канапе, тарталетки, мясные рулеты</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food73.jpg','Фуршетные боксы — закуски в красивой подаче')">
-        <img src="food73.jpg" alt="Боксы" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food73.jpg" alt="Боксы" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">📦</span><span>food73.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Фуршет</div><div class="gallery-name">Фуршетные боксы — разнообразные закуски</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food3.jpg','Пасхальный кулич — белая глазурь и золото')">
-        <img src="food3.jpg" alt="Кулич" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food3.jpg" alt="Кулич" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🎂</span><span>food3.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Выпечка</div><div class="gallery-name">Пасхальный кулич — белая глазурь и золото</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food4.jpg','Коллекция куличей с жемчужным декором')">
-        <img src="food4.jpg" alt="Куличи" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food4.jpg" alt="Куличи" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🎂</span><span>food4.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Выпечка</div><div class="gallery-name">Коллекция куличей с жемчужным декором</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food5.jpg','Авторский кулич с вербой')">
-        <img src="food5.jpg" alt="Кулич с вербой" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food5.jpg" alt="Кулич с вербой" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🌿</span><span>food5.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Авторское</div><div class="gallery-name">Кулич с вербой и перепелиными яйцами</div></div>
       </div>
       <div class="gallery-item" onclick="openLb('food20.jpg','Брускетты с вялеными томатами и творожным сыром')">
-        <img src="food20.jpg" alt="Брускетты" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="food20.jpg" alt="Брускетты" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="gallery-placeholder" style="display:none"><span class="ph-icon">🍞</span><span>food20.jpg</span></div>
         <div class="gallery-overlay"><div class="gallery-cat">Закуски</div><div class="gallery-name">Брускетты с вялеными томатами и сыром</div></div>
       </div>
@@ -1707,11 +1704,11 @@
           <div class="form-row-2">
             <div class="form-field">
               <label>Ваше имя</label>
-              <input type="text" name="name" placeholder="Имя" required />
+              <input type="text" name="name" placeholder="Имя" autocomplete="name" required />
             </div>
             <div class="form-field">
               <label>Телефон</label>
-              <input type="tel" name="phone" placeholder="+7 900 000 00 00" required />
+              <input type="tel" name="phone" placeholder="+7 900 000 00 00" autocomplete="tel" required />
             </div>
           </div>
           <div class="form-field">
